@@ -36,4 +36,13 @@ RSpec.describe AddressBook do
             expect(new_entry.email).to eq('dayo.oshinnaiye@graceco.com.ng')
         end
     end
+    
+    describe "#remove_entry" do
+        it "removes only one entry from address book" do
+            book = AddressBook.new
+            curr_size = book.entries.size
+            book.remove_entry('Oshinnaiye','08185501425','dayo.oshinnaiye@graceco.com.ng')
+            expect(book.entries.size).to eq(0)
+        end
+    end
 end
