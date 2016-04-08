@@ -4,10 +4,6 @@ class MenuController
     attr_reader :address_book
     
     def initialize
-        @address_book = address_book
-    end
-    
-    def initialize
         @address_book = AddressBook.new
     end
     
