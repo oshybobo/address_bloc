@@ -11,10 +11,11 @@ class MenuController
     
         p "Main Menu - #{address_book.entries.count} entries"
         p "1 - View all entries"
-        p "2 - Create an entry"
-        p "3 - Search for an entry"
-        p "4 - Import entries from a CSV"
-        p "5 - Exit"
+        p "2 - View Entry Number n"
+        p "3 - Create an entry"
+        p "4 - Search for an entry"
+        p "5 - Import entries from a CSV"
+        p "6 - Exit"
         print "Enter your selection: "
         
         selection = gets.to_i
@@ -27,17 +28,22 @@ class MenuController
             main_menu
         when 2
             system "clear"
-            create_entry
+            view_spec_entry
             main_menu
+        
         when 3
             system "clear"
-            search_entries
+            create_entry
             main_menu
         when 4
             system "clear"
-            read_csv
+            search_entries
             main_menu
         when 5
+            system "clear"
+            read_csv
+            main_menu
+        when 6
             p "Good-bye!"
             
             exit(0)
@@ -61,6 +67,27 @@ class MenuController
         system "clear"
         p "End of entries"
         
+    end
+    
+    def view_spec_entry
+        system "clear"
+        p "Search Via Entry Number"
+        print "Enter Book Entry Number:"
+        
+        inpt = gets.to_i
+        #decis = inpt.is_a? Integer
+        out = address_book.entries[inpt].to_s
+        
+        case inpt.is_a? Integer
+        
+        when true
+            p out
+            #p decis #entry_submenu(out)
+        else
+            system "clear"
+            p "#{inpt} is not a valid input"
+            view_spec_entry
+        end
     end
     
     def create_entry
